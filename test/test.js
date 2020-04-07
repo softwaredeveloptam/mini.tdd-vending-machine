@@ -18,4 +18,14 @@ describe("vending machine", () => {
     });
     expect(machine.balance).to.equal(500); // Use an ES6 getter
   });
+  it("should save letter when selected", () => {
+    //Setup
+    const machine = new VendingMachine();
+
+    //Exercise
+    machine.pressButton("D");
+
+    //Assert
+    expect(machine.rowSelection).to.equal("D");
+  });
 });

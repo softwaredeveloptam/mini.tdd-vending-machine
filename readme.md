@@ -6,32 +6,32 @@ Practice pairing and test-driven development skills as you create a vending mach
 
 In this task you will:
 
-* Use test-driven development to create a state machine
-* Practice writing tests before code
-* Practice using the SEAT pattern for tests
-* Practice effective pairing techniques
+- Use test-driven development to create a state machine
+- Practice writing tests before code
+- Practice using the SEAT pattern for tests
+- Practice effective pairing techniques
 
 ## User story
 
-* As a shopper,
-* I would like to have a vending machine
-* So that I can buy goods efficiently.
+- As a shopper,
+- I would like to have a vending machine
+- So that I can buy goods efficiently.
 
 ## State
 
-* balance - the amount of money currently inserted but not yet used
-* till - a map of coins and counts in the machine
-* selectedRow - stores the row selected, if any
-* selectedColumn - stores the selected column, if any
+- balance - the amount of money currently inserted but not yet used
+- till - a map of coins and counts in the machine
+- selectedRow - stores the row selected, if any
+- selectedColumn - stores the selected column, if any
 
 ## Behavior
 
 **Please note that these are suggestions for methods, you will probably have an easier time adding more than these methods to make testing easier. Remember: Single Responsibility Principle, a method should only do 1 thing.**
 
-* `insertCoin(denomination)` - to put a coin in the machine
-* `changeReturn()` - logs the coins to the console and resets the balance
-* `pressButton('A'-'D')` - select a row
-* `pressButton(1-4)` - select a column
+- `insertCoin(denomination)` - to put a coin in the machine
+- `changeReturn()` - logs the coins to the console and resets the balance
+- `pressButton('A'-'D')` - select a row
+- `pressButton(1-4)` - select a column
 
 ## Instructions
 
@@ -60,8 +60,8 @@ The happy path should proceed as follows:
 
 ## Acceptance criteria
 
-1.  _Given_ that the balance is zero, _when_ a coin is inserted, _then_ the balance should rise _and_ types of coins should be stored
-1.  _Given_ that no row is selected, _when_ a row is selected the letter should be saved and printed to the console
+1.[x] _Given_ that the balance is zero, _when_ a coin is inserted, _then_ the balance should rise _and_ types of coins should be stored 1.[x] _Given_ that no row is selected, _when_ a row is selected the letter should be saved and printed to the console
+
 1.  _Given_ that a row is selected, _when_ there is sufficient balance and inventory and a column is selected
     1.  _then_ the row and column should be logged to the console
     1.  _and_ a message should be logged stating "Here is your [item name]"
