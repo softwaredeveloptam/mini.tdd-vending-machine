@@ -28,4 +28,44 @@ describe("vending machine", () => {
     //Assert
     expect(machine.rowSelection).to.equal("D");
   });
+  it("should save number when selected", () => {
+    const machine = new VendingMachine();
+
+    machine.pressButton(3);
+
+    expect(machine.columnSelection).to.equal(3);
+  });
+  it("should exist inventory when program starts", () => {
+    const machine = new VendingMachine();
+
+    expect(machine.inventory).to.exist;
+  });
+  it("should select an item", () => {
+    const machine = new VendingMachine();
+
+    machine.pressButton("A");
+    machine.pressButton(0);
+    machine.findProduct();
+
+    expect(machine.purchasedProduct).to.equal("Barbecue Chips");
+  });
+  it("should reduce product count by 1 when purchased", () => {
+    const machine = new VendingMachine();
+
+    machine.pressButton("B");
+    machine.pressButton(1);
+    machine.findProduct();
+
+    expect(machine.inventory[1][1].count).to.equal(6);
+  });
+  it("should have sufficient balance when making purchase", () => {
+    const machine = new VendingMachine();
+
+    machine.pressButton("C");
+    machine.pressButton(2);
+    machine.balance = 300;
+    machine.findProduct();
+
+    expect(machine.balance).to.equal(200);
+  });
 });
