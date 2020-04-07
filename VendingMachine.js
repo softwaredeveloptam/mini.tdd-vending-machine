@@ -38,6 +38,7 @@ class VendingMachine {
     console.log(this.rowSelection);
   }
 }
+//commenting to test github
 
 // const ourMachine = new VendingMachine();
 
