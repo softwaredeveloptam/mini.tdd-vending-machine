@@ -14,8 +14,8 @@ class VendingMachine {
       500: 0,
     };
     this.balance = balance;
-    this.rowSelection;
-    this.columnSelection;
+    this.row;
+    this.column;
 
     const item1 = { name: "Barbecue Chips", price: 150, count: 5 };
     const item2 = { name: "Salt and Seaweed chips", price: 120, count: 6 };
@@ -42,6 +42,14 @@ class VendingMachine {
     ];
 
     this.purchasedProduct;
+    this.inventoryCheck;
+    this.fundsCheck;
+    this.change = {
+      10: 0,
+      50: 0,
+      100: 0,
+      500: 0,
+    };
   }
 
   calculateBalance() {
@@ -62,38 +70,63 @@ class VendingMachine {
 
   pressButton(button) {
     if (typeof button === "string") {
-      this.rowSelection = button;
+      this.row = button;
     } else if (typeof button === "number") {
-      this.columnSelection = button;
+      this.column = button;
     }
 
-    if (this.rowSelection && this.columnSelection) {
-      console.log(this.rowSelection, this.columnSelection);
+    if (this.row && this.column) {
+      console.log(this.row, this.column);
+    }
+  }
+
+  calculateChange() {
+    while (this.balance > 0) {
+      if (this.balance > 500) {
+        this.change[500] += 1;
+        this.balance -= 500;
+      } else if (this.balance > 100) {
+        this.change[100] += 1;
+        this.balance -= 100;
+      } else if (this.balance > 50) {
+        this.change[50] += 1;
+        this.balance -= 50;
+      } else if (this.balance > 10) {
+        this.change[10] += 1;
+        this.balance -= 10;
+      }
     }
   }
 
   findProduct() {
-    if (this.rowSelection == "A") {
-      this.rowSelection = 0;
-    } else if (this.rowSelection == "B") {
-      this.rowSelection = 1;
-    } else if (this.rowSelection == "C") {
-      this.rowSelection = 2;
-    } else if (this.rowSelection == "D") {
-      this.rowSelection = 3;
+    if (this.row == "A") {
+      this.row = 0;
+    } else if (this.row == "B") {
+      this.row = 1;
+    } else if (this.row == "C") {
+      this.row = 2;
+    } else if (this.row == "D") {
+      this.row = 3;
     }
+    let currentItem = this.inventory[this.row][this.column];
 
-    this.purchasedProduct = this.inventory[this.rowSelection][
-      this.columnSelection
-    ].name;
-    console.log(`Here is your product: ${this.purchasedProduct}`);
+    if (currentItem.count > 0 && this.balance > currentItem.price) {
+      this.purchasedProduct = currentItem.name;
+      console.log(`Here is your product: ${this.purchasedProduct}`);
 
-    this.inventory[this.rowSelection][this.columnSelection].count--;
+      currentItem.count--;
 
-    this.balance =
-      this.balance -
-      this.inventory[this.rowSelection][this.columnSelection].price;
-    console.log(this.balance);
+      this.balance = this.balance - currentItem.price;
+      console.log(this.balance);
+
+      this.calculateChange();
+    } else if (currentItem.count === 0) {
+      this.inventoryCheck = false;
+      console.log("Product Sold Out");
+    } else {
+      this.fundsCheck = false;
+      console.log("Insufficient Funds");
+    }
   }
 }
 
@@ -104,7 +137,7 @@ class VendingMachine {
 // console.log(ourMachine.till);
 // ourMachine.pressButton("D");
 // ourMachine.pressButton(3);
-// console.log(ourMachine.rowSelection);
+// console.log(ourMachine.row);
 // console.log(ourMachine.inventory[0][0]);
 
 /*

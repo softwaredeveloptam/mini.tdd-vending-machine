@@ -60,13 +60,17 @@ The happy path should proceed as follows:
 
 ## Acceptance criteria
 
-1.[x] _Given_ that the balance is zero, _when_ a coin is inserted, _then_ the balance should rise _and_ types of coins should be stored 1.[x] _Given_ that no row is selected, _when_ a row is selected the letter should be saved and printed to the console
+1. [x] _Given_ that the balance is zero, _when_ a coin is inserted, _then_ the balance should rise _and_ types of coins should be stored
+2. [x] _Given_ that no row is selected, _when_ a row is selected the letter should be saved and printed to the console
 
-1.  _Given_ that a row is selected, _when_ there is sufficient balance and inventory and a column is selected 1.[x] _then_ the row and column should be logged to the console 1.[x] _and_ a message should be logged stating "Here is your [item name]" 1.[x] _and_ the item inventory should decrease by 1
-    1.  _and_ the correct change should be returned (log type and number of coins to console)
-1.  _Given_ that a row and column are selected, _when_ there is no inventory at that column, _then_ an error message should be logged.
-1.  _Given_ that a row and column are selected, _when_ the balance is insufficient to purchase the selected item, _then_ an error message should be printed
-1.  _Given_ that the program has just started, _when_ the balance is read, _then_ it should read zero
+3. [x] _Given_ that a row is selected, _when_ there is sufficient balance and inventory and a column is selected
+   1. [x] _then_ the row and column should be logged to the console
+   2. [x] _and_ a message should be logged stating "Here is your [item name]"
+   3. [x] _and_ the item inventory should decrease by 1
+   4. [x] _and_ the correct change should be returned (log type and number of coins to console)
+4. [x] _Given_ that a row and column are selected, _when_ there is no inventory at that column, _then_ an error message should be logged.
+5. [x]_Given_ that a row and column are selected, _when_ the balance is insufficient to purchase the selected item, _then_ an error message should be printed
+6. [x]_Given_ that the program has just started, _when_ the balance is read, _then_ it should read zero
 
 **_Please note: you must track both the types of coins and number of coins to compute the balance and return change_**
 
