@@ -50,6 +50,7 @@ class VendingMachine {
       100: 0,
       500: 0,
     };
+    this.changeOwed = this.balance;
   }
 
   calculateBalance() {
@@ -81,19 +82,19 @@ class VendingMachine {
   }
 
   calculateChange() {
-    while (this.balance > 0) {
-      if (this.balance > 500) {
+    while (this.changeOwed > 0) {
+      if (this.changeOwed >= 500) {
         this.change[500] += 1;
-        this.balance -= 500;
-      } else if (this.balance > 100) {
+        this.changeOwed -= 500;
+      } else if (this.changeOwed >= 100) {
         this.change[100] += 1;
-        this.balance -= 100;
-      } else if (this.balance > 50) {
+        this.changeOwed -= 100;
+      } else if (this.changeOwed >= 50) {
         this.change[50] += 1;
-        this.balance -= 50;
-      } else if (this.balance > 10) {
+        this.changeOwed -= 50;
+      } else if (this.changeOwed >= 10) {
         this.change[10] += 1;
-        this.balance -= 10;
+        this.changeOwed -= 10;
       }
     }
   }
@@ -118,6 +119,7 @@ class VendingMachine {
 
       this.balance = this.balance - currentItem.price;
       console.log(this.balance);
+      this.changeOwed = this.balance;
 
       this.calculateChange();
     } else if (currentItem.count === 0) {
@@ -130,39 +132,4 @@ class VendingMachine {
   }
 }
 
-// const ourMachine = new VendingMachine();
-
-// console.log(ourMachine.insertCoin(100));
-// console.log(ourMachine.balance);
-// console.log(ourMachine.till);
-// ourMachine.pressButton("D");
-// ourMachine.pressButton(3);
-// console.log(ourMachine.row);
-// console.log(ourMachine.inventory[0][0]);
-
-/*
-class Circle {
-  constructor (radius) {
-      this.radius = radius;
-  }
-  get area () {
-      return Math.PI * this.radius * this.radius;
-  }
-  set area (n) {
-      this.radius = Math.sqrt(n / Math.PI);
-  }
-}
-*/
-// var obj = { "10": 5, "50": 7, "100": 0, "500": 0 };
-/* var result = Object.keys(obj).map(function(key) {
-  return [Number(key), obj[key]];
-});
-result.map(innerArray =>{
-  return innerArray[0] * innerArray[1]
-}).reduce((total, current) =>{
-  return total+current;
-})
-
-console.log(result);
-*/
 module.exports = VendingMachine;

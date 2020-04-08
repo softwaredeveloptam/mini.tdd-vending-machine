@@ -102,7 +102,8 @@ describe("vending machine", () => {
     machine.pressButton(3);
     machine.balance = 500;
     machine.findProduct();
+    const correctChange = { 10: 0, 50: 1, 100: 2, 500: 0 };
 
-    expect(machine.change).to.equal({ 10: 0, 50: 1, 100: 2, 500: 0 });
+    expect(machine.change).to.deep.equal(correctChange);
   });
 });
